@@ -1,36 +1,25 @@
 import math
-import os
 from datetime import datetime
 
-def factorial(n):
-    if n < 0:
-        return "Undefined for negative numbers"
-    return math.factorial(n)
+# Generate timestamp for the filename
+timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+filename = f"factorial_results_{timestamp}.txt"
 
-if __name__ == "__main__":
-    number = 11  # you can change this value
-    
-    # will change the number 
-    result = factorial(number)
+# Calculate factorials from 1 to 10
+results = []
+print("Calculating Factorials 1 to 10...")
+for i in range(1, 11):
+    fact = math.factorial(i)
+    results.append(f"{i}! = {fact}")
+    print(f"{i}! = {fact}")
 
-    # Define the output directory and create it if needed
-    # this will add text file with timestamp.
-    output_dir = r"C:\Users\Jaya\Documents\Bikram Chatterjee\Jenkins\temp"
-    os.makedirs(output_dir, exist_ok=True)
+# Write to a text file with a timestamp
+with open(filename, "w") as f:
+    f.write("Factorial Results (1 to 10)\n")
+    f.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+    f.write("-" * 30 + "\n")
+    for line in results:
+        f.write(line + "\n")
+        
 
-    # Get current timestamp for the filename (safe for Windows: no spaces or colons)
-    now = datetime.now()
-    timestamp_str = now.strftime("%Y%m%d_%H%M%S")   # e.g., 20260831_143522
-
-    # Create the filename with timestamp
-    output_file = os.path.join(output_dir, f"factorial_output_{timestamp_str}.txt")
-
-    # Write the result and timestamp inside the file
-    with open(output_file, "w") as f:
-        f.write(f"Timestamp: {now.strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.write(f"The factorial of {number} is {result}\n")
-
-    # Also print to console (Jenkins log)
-    print(f"Result written to {output_file}")
-    print(f"Timestamp: {now.strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"The factorial of {number} is {result}")
+print(f"\n✅ Results successfully saved to {filename}")
