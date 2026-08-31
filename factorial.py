@@ -8,11 +8,12 @@ def factorial(n):
     return math.factorial(n)
 
 if __name__ == "__main__":
-    number = 15  # you can change this value
+    number = 11  # you can change this value
     # will change the number 
     result = factorial(number)
 
     # Define the output directory and create it if needed
+    # this will add text file with timestamp.
     output_dir = r"C:\Users\Jaya\Documents\Bikram Chatterjee\Jenkins\temp"
     os.makedirs(output_dir, exist_ok=True)
 
