@@ -9,6 +9,7 @@ def factorial(n):
 
 if __name__ == "__main__":
     number = 10   # you can change this value
+    # will change the number 
     result = factorial(number)
 
     # Define the output directory and create it if needed
